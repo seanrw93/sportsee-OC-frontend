@@ -1,0 +1,64 @@
+.sidebar {
+    background-color: #000;
+    color: #ecf0f1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px 15px;
+  
+    &__nav {
+      @include flex(column, flex-start, center);
+      height: 100%;
+      .sidebar__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  
+    &__item {
+    margin-bottom: 15px;
+    .sidebar__icon {
+        background: url('../../../public/assets/images/sprites/sidebar-nav-icons.svg');
+        background-size: cover;
+        display: block;
+        height: 3em;
+        width: 3em;
+
+
+        &--yoga {
+          background-position: 0 0;
+        }
+
+        &--swimming {
+            background-position: 0 -63px;
+        }
+
+        &--bicycle {
+            background-position: 0 -126px;
+        }
+
+        &--dumbbell {
+            background-position: 0 -189px;
+        }
+    }
+
+      &:hover {
+        border: 2px solid red;
+      }
+
+
+    }
+  
+    &__link {
+      display: block;
+      padding: 15px 20px;
+      color: #ecf0f1;
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  

@@ -1,0 +1,12 @@
+@import './abstracts/_colors';
+@import './abstracts/_mixins';
+@import './abstracts/_utilities';
+@import './base/_resets';
+@import './base/_typography';
+@import './components/header';
+@import './components/sidebar';
+@import './pages/_home';
+
+.page-container {
+    @include flex(row, space-between, center);
+}

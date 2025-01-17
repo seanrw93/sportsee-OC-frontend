@@ -1,0 +1,33 @@
+// Flex utility classes
+.d-flex { 
+    display: flex; 
+    &--flex-row { flex-direction: row; }
+    &--flex-column { flex-direction: column; }
+    &--justify-center { justify-content: center; }
+    &--justify-space-between { justify-content: space-between; }
+    &--justify-space-around { justify-content: space-around; }
+    &--justify-flex-start { justify-content: flex-start; }
+    &--justify-flex-end { justify-content: flex-end; }
+    &--align-center { align-items: center; }
+    &--align-start { align-items: flex-start; }
+    &--align-end { align-items: flex-end; }
+    &--align-baseline { align-items: baseline; }
+    &--align-stretch { align-items: stretch; }
+    &--wrap { flex-wrap: wrap; }
+}
+// Grid utility classes
+.justify-center { justify-items: center; }
+.justify-start { justify-items: start; }
+.justify-end { justify-items: end; }
+.justify-stretch { justify-items: stretch; }
+.align-items-center { align-items: center; }
+.align-items-start { align-items: start; }
+.align-items-end { align-items: end; }
+.align-items-stretch { align-items: stretch; }
+.align-self-center { align-self: center; }
+.align-self-start { align-self: start; }
+.align-self-end { align-self: end; }
+.align-self-stretch { align-self: stretch; }
+
+
+

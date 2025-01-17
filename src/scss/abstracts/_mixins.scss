@@ -1,0 +1,54 @@
+$breakpoints: (
+  'small': 576px,
+  'medium': 768px,
+  'large': 992px,
+  'xlarge': 1200px
+);
+
+@mixin respond-to($breakpoint, $type: 'min') {
+  $size: map-get($breakpoints, $breakpoint);
+
+  @if $type == 'min' {
+    @media (min-width: $size) {
+      @content;
+    }
+  } @else if $type == 'max' {
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+}
+
+@mixin flex($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+  
+@mixin grid-layout($columns-default, $columns-tablet, $columns-desktop) {
+    display: grid;
+    grid-template-columns: repeat($columns-default, auto);
+    gap: 1rem;
+
+    @include respond-to(medium) {
+        grid-template-columns: repeat($columns-tablet, auto);
+    }
+
+    @include respond-to(large) {
+        grid-template-columns: repeat($columns-desktop, auto);
+    }
+}
+
+@mixin fadeIn($from, $to, $duration, $timing) {
+  @keyframes fadeIn {
+      from {
+          opacity: $from;
+      }
+      to {
+          opacity: $to;
+      }
+  }
+  animation: fadeIn $duration $timing forwards;
+}
+
