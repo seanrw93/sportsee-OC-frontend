@@ -4,14 +4,15 @@ import './scss/main.scss';
 import './scss/base/_resets.scss';
 
 import Layout from './components/Layout';
-import Home from './pages/Home';
+import UserProfile from './pages/UserProfile';
 
 const App = () => {
+
   return (
     <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<Home />} /> 
+            <Route path="/user/:id" element={<UserProfile />} /> 
           </Route>
         </Routes>
     </BrowserRouter>
