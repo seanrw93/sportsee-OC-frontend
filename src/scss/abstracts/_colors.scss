@@ -1,4 +1,8 @@
-$primary-color: #FF6060;
-$secondary-color: #F6F6F6;
-$background-color: #FFF;
-$footer-color: #333;
+:root {
+    /* Colors */
+    --primary-black: #020203;
+    --primary-red: #E60000;
+}
+
+$primary-black: var(--primary-black);
+$primary-red: var(--primary-red);

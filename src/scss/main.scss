@@ -3,10 +3,12 @@
 @import './abstracts/_utilities';
 @import './base/_resets';
 @import './base/_typography';
+@import './components/data-grid';
+@import './components/_greeting';
 @import './components/header';
 @import './components/sidebar';
 @import './pages/_home';
 
 .page-container {
-    @include flex(row, space-between, center);
+    @include flex(row, flex-start, flex-start);
 }

@@ -1,0 +1,113 @@
+.graph-grid {
+    display: grid;
+    grid-template-areas: 
+      'daily-activity-chart daily-activity-chart daily-activity-chart calories-count'
+      'daily-activity-chart daily-activity-chart daily-activity-chart proteins-count'
+      'session-speed-chart performance-chart today-score-chart carbs-count'
+      'session-speed-chart performance-chart today-score-chart lipids-count';
+    grid-gap: 1em;
+    margin-top: 5em;
+    width: 100%;
+    max-width: 900px;
+
+    & > * {
+        border-radius: 5px;
+    }
+
+    &__chart-item {
+        background-color: #fbfbfb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @at-root {
+            &--daily-activity-chart {
+                grid-area: daily-activity-chart;
+            }
+    
+            &--session-speed-chart {
+                grid-area: session-speed-chart;
+                background-color: #FF0101;
+            }
+    
+            &--performance-chart {
+                grid-area: performance-chart;
+            }
+    
+            &--today-score-chart {
+                grid-area: today-score-chart;
+            }
+        }
+    }
+
+    &__stat-card {           
+        @include flex(row, center, center);
+
+        background-color: #fbfbfb;
+        padding: 1.5em;
+        min-width: 13em;
+
+        .stat-card__container {
+            @include flex(row, flex-start, center);
+            width: 100%;
+            gap: 1.5em;
+
+            .stat-card__icon {
+                background-position: 0 0;
+                background-size: cover;
+                height: 3em;
+                width: 3em;
+            }
+
+            .stat-card__data {
+
+                .stat-card__value {
+                    font-size: 1.5em;
+                    font-weight: 900;
+                }
+
+                .stat-card__label {
+                    font-size: 0.8em;
+                    font-weight: 400;
+                    color: #282D30;
+                }
+            }
+        }
+
+        @at-root {
+            &--calories {
+                grid-area: calories-count;
+
+                .stat-card__icon {
+                    background-image: url('../../../public/assets/images/icons/calories-icon.svg');
+                }
+            }
+    
+            &--proteins {
+                grid-area: proteins-count;
+
+                .stat-card__icon {
+                    background-image: url('../../../public/assets/images/icons/protein-icon.svg');
+                }
+            }
+    
+            &--carbs {
+                grid-area: carbs-count;
+
+                .stat-card__icon {
+                    background-image: url('../../../public/assets/images/icons/carbs-icon.svg');
+                }
+            }
+    
+            &--lipids {
+                grid-area: lipids-count;
+
+                .stat-card__icon {
+                    background-image: url('../../../public/assets/images/icons/fat-icon.svg');
+                }
+            }
+        }
+
+    }
+}
+  

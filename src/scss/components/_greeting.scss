@@ -1,0 +1,13 @@
+.greeting {
+    &__message {
+        font-size: 3em;
+    }
+
+    &__name {
+        color: $primary-red
+    }
+
+    &__achieve-goal {
+        margin-top: 1em;
+    }
+}

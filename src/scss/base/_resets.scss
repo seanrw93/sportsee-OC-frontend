@@ -12,6 +12,7 @@
     height: 100%;
   }
   
+
   body {
     /* 3. Add accessible line-height */
     line-height: 1.5;
@@ -22,9 +23,8 @@
 
   .wrapper {
     max-width: 1200px;   /* Max width of content */
-    margin: 0 auto;      /* Center content horizontally */
-    padding-left: 20px;  /* Left margin inside */
-    padding-right: 20px; /* Right margin inside */
+    padding: 4em 0 0 5em; /* Padding around content */
+    width: 100%;
   }
   
   /* 5. Improve media defaults */

@@ -3,16 +3,17 @@
     color: #ecf0f1;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     padding: 20px 15px;
   
     &__nav {
       @include flex(column, flex-start, center);
-      height: 100%;
+      flex-grow: 1;
       .sidebar__list {
         list-style: none;
         padding: 0;
         margin: 0;
+        height: 100vh;
       }
     }
   
@@ -44,7 +45,7 @@
     }
 
       &:hover {
-        border: 2px solid red;
+        transform: scale(1.1);
       }
 
 

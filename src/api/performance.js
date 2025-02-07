@@ -29,7 +29,7 @@
  * @throws {Error}
  */
 
-export const getPerformance = async (id) => {
+export const getPerformanceData = async (id) => {
     try {
         const response = await fetch(`http://localhost:3000/user/${id}/performance`);
         if (!response.ok) {
