@@ -6,9 +6,9 @@
       'session-speed-chart performance-chart today-score-chart carbs-count'
       'session-speed-chart performance-chart today-score-chart lipids-count';
     grid-gap: 1em;
-    margin-top: 5em;
+    margin-top: 3em;
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
 
     & > * {
         border-radius: 5px;
@@ -23,11 +23,13 @@
         @at-root {
             &--daily-activity-chart {
                 grid-area: daily-activity-chart;
+                min-width: 700px;
             }
     
             &--session-speed-chart {
                 grid-area: session-speed-chart;
                 background-color: #FF0101;
+                cursor: none;
             }
     
             &--performance-chart {
@@ -62,8 +64,8 @@
             .stat-card__data {
 
                 .stat-card__value {
-                    font-size: 1.5em;
-                    font-weight: 900;
+
+                    font-weight: 900 !important;
                 }
 
                 .stat-card__label {

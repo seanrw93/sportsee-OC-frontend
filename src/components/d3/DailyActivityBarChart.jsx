@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 import { getActivities } from '../../api/activity';
 import * as d3 from 'd3';
 
+/**
+ * @description A bar chart that displays daily activity data
+ * 
+ * @param {Object} props - The props object
+ * @param {number} props.userId - The user ID
+ * @returns {JSX.Element} The bar chart component
+*/
+
 const DailyActivityBarChart = ({ userId }) => {
     const svgRef = useRef(null);
     const [data, setData] = useState([]);
@@ -35,7 +43,6 @@ const DailyActivityBarChart = ({ userId }) => {
             .attr("class", "tooltip")
             .style("position", "absolute")
             .style("visibility", "hidden")
-            .style("background-color", "red")
             .style("color", "#eee")
             .style("border", "1px solid #ccc")
             .style("padding", "8px")
@@ -46,7 +53,7 @@ const DailyActivityBarChart = ({ userId }) => {
         const container = svgRef.current.parentElement;
         const width = container.clientWidth;
         const height = container.clientHeight;
-        const margin = { top: 60, right: 40, bottom: 50, left: 20 };
+        const margin = { top: 60, right: 50, bottom: 50, left: 30 };
 
         // Clear previous chart
         d3.select(svgRef.current).selectAll("*").remove();
@@ -58,7 +65,7 @@ const DailyActivityBarChart = ({ userId }) => {
             .paddingInner(0.6);
 
         const x1 = d3.scaleBand()
-            .domain(['kilogram', 'calories'])
+            .domain(["kilogram", "calories"])
             .rangeRound([0, x0.bandwidth()])
             .padding(0.5);
 
@@ -67,8 +74,8 @@ const DailyActivityBarChart = ({ userId }) => {
             .rangeRound([height - margin.bottom, margin.top]);
 
         const color = d3.scaleOrdinal()
-            .domain(['kilogram', 'calories'])
-            .range(['#E60000', '#020203']);
+            .domain(["kilogram", "calories"])
+            .range(["#E60000", "#020203"]);
 
         const svg = d3.select(svgRef.current)
             .attr("width", width)
@@ -90,14 +97,15 @@ const DailyActivityBarChart = ({ userId }) => {
                 g.selectAll("line")
                     .attr("stroke", "#ccc")
                     .attr("x1", 0)
-                    .attr("x2", -width + margin.right + margin.left); 
+                    .attr("x2", -width + margin.right + margin.left)
+                    .style("stroke-dasharray", "2,2"); 
             });
 
         svg.append("text")
-            .attr("x", (width / 16))             
+            .attr("x", (width / 13))             
             .attr("y", margin.top / 1.5)
             .attr("text-anchor", "middle")  
-            .style("font-size", "16px") 
+            .style("font-size", "12px") 
             .style("font-weight", "bold")  
             .text("Daily Activity");
 
@@ -108,7 +116,7 @@ const DailyActivityBarChart = ({ userId }) => {
             .attr("transform", d => `translate(${x0(d.day)},0)`);
 
         barGroups.selectAll("rect")
-            .data(d => ['kilogram', 'calories'].map(key => ({ key, value: d[key] })))
+            .data(d => ["kilogram", "calories"].map(key => ({ key, value: d[key] })))
             .join("rect")
             .attr("x", d => x1(d.key))
             .attr("y", d => y(d.value))
@@ -120,7 +128,8 @@ const DailyActivityBarChart = ({ userId }) => {
             .attr("fill", d => color(d.key))
             .on("mouseover", (_, d) => {
                 tooltip.style("visibility", "visible")
-                       .text(`${d.key === "kilogram" ? d.value + " kg" : d.value + " KCal"}`);
+                       .style("background-color", d.key === "kilogram" ? "#FF0101" : "#020203")
+                       .text(`${d.key === "kilogram" ? d.value + " kg" : d.value + " kCal"}`);
             })
             .on("mousemove", event => {
                 tooltip.style("top", `${event.pageY - 10}px`)
@@ -137,9 +146,9 @@ const DailyActivityBarChart = ({ userId }) => {
             .attr("transform", `translate(${width - margin.right - 280}, ${margin.top})`)
 
         legend.selectAll("rect")
-            .data(['Weight (KG)', 'Calories (KCal)'])
+            .data(["Weight (KG)", "Calories (KCal)"])
             .join("rect")
-            .attr("x", (_, i) => i * 150)
+            .attr("x", (_, i) => i * 150 + 20)
             .attr("y", -30)
             .attr("rx", 20)
             .attr("ry", 20)
@@ -148,12 +157,13 @@ const DailyActivityBarChart = ({ userId }) => {
             .attr("fill", d => color(d));
 
         legend.selectAll("text")
-            .data(['Weight (KG)', 'Calories (KCal)'])
+            .data(["Weight (kg)", "Burned calories (kCal)"])
             .join("text")
-            .attr("x", (_, i) => i * 150 + 15)
+            .attr("x", (_, i) => i * 150 + 40)
             .attr("y", -24)
             .text(d => d)
-            .attr("alignment-baseline", "middle");
+            .attr("alignment-baseline", "middle")
+            .style("font-size", "12px");
 
     }, [data]);
 

@@ -42,7 +42,7 @@ const TodayScoreRingChart = ({ score }) => {
         ];
 
         const arc = d3.arc()
-            .innerRadius(radius * 0.9)
+            .innerRadius(radius * 0.85)
             .outerRadius(radius);
 
         g.selectAll('path')
@@ -55,12 +55,32 @@ const TodayScoreRingChart = ({ score }) => {
             .style('stroke-width', '2px');
 
         // Add the text label
+        
+        svg.append("text")
+            .attr("x", (width / 8))             
+            .attr("y", 25)
+            .attr("text-anchor", "middle")
+            .attr("class", "score-label")  
+            .style("font-size", "12px") 
+            .style("font-weight", "bold")  
+            .text("Score");;
+
         g.append('text')
             .attr('text-anchor', 'middle')
-            .attr('dy', '0.35em')
+            .attr('class', 'score-value')
+            .attr('dy', '-0.3em')
             .style('font-size', '24px')
-            .style('fill', '#4caf50')
+            .style('font-weight', 'bold')
+            .style('fill', '#000')
             .text(`${score * 100}%`)
+
+        g.append('text')
+            .attr('text-anchor', 'middle')
+            .attr('class', 'score-label')
+            .attr('dy', '0.8em')
+            .style('font-size', '12px')
+            .style('fill', '#000')
+            .text('of your goal')
 
     }, [score]);
 

@@ -8,6 +8,11 @@ import PerformanceRadarChart from '../components/d3/PerformanceRadarChart';
 import TodayScoreRingChart from '../components/d3/TodayScoreRingChart';
 import StatCounter from '../components/StatCounter';
 
+/**
+ * @description UserProfile component to display user profile information and charts.
+ * @returns {JSX.Element} The rendered component.
+ */
+
 const UserProfile = () => {
     const { id } = useParams();
     const [user, setUser] = React.useState(null);
@@ -15,13 +20,12 @@ const UserProfile = () => {
     const [error, setError] = React.useState(false);
     const [achieveYesterdayGoal, setAchieveYesterdayGoal] = React.useState(true);
 
-
-
     /**
      * @description Fetch user data from the API
      * 
+     * @async
      * @function fetchUser
-     * @returns {Promise<void>}
+     * @returns {Promise<void>} A promise that resolves to the user data.
      */
 
     useEffect(() => {
@@ -87,7 +91,7 @@ const UserProfile = () => {
                                 value={counter.value}
                                 label={counter.label}
                             />
-                        ))}
+                        )) }
                     </div>
                 </>
             )}

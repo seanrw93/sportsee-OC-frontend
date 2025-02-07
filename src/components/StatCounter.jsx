@@ -7,7 +7,7 @@ const StatCounter = ({ className, value, label }) => {
             <div className="stat-card__container">
                 <div className="stat-card__icon"></div>
                 <div className="stat-card__data">
-                    <p className="stat-card_value">{ value }</p>
+                    <p className="stat-card__value">{ value }</p>
                     <p className="stat-card__label">{ label }</p>
                 </div>
             </div>
