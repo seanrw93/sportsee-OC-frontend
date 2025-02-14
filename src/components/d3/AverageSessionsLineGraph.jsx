@@ -120,12 +120,6 @@ const AverageSessionsLineGraph = ({ userId }) => {
             .style("fill", "#fbfbfb")
             .text(d => d.day);
 
-        // Append y-axis
-        svg.append("g")
-            .attr("transform", `translate(${margin.left},0)`)
-            .call(d3.axisLeft(y).ticks(d3.max(y.domain()) / 100).tickSizeOuter(0))
-            .call(g => g.selectAll(".domain").remove());
-
         svg.append("text")
             .attr("x", (width - 195))             
             .attr("y", margin.top / 1.5)
