@@ -1,7 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { getPerformanceData } from '../../api/performance';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
+
+/**
+ * @typedef {Object} PerformanceRadarChartProps
+ * @property {number} userId
+ */
+
+/**
+ * @description A radar chart that displays the user's performance data
+ * @param {PerformanceRadarChartProps} props
+ * @returns {JSX.Element} The radar chart component
+ */
 
 const PerformanceRadarChart = ({ userId }) => {
   const svgRef = useRef(null);

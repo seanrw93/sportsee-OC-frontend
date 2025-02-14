@@ -12,3 +12,7 @@
 .page-container {
     @include flex(row, flex-start, flex-start);
 }
+
+#root {
+    height: 100vh;
+}

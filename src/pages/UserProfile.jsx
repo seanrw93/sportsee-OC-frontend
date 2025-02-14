@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getUserById } from '../api/user';
 
@@ -13,20 +13,31 @@ import StatCounter from '../components/StatCounter';
  * @returns {JSX.Element} The rendered component.
  */
 
+/**
+ * @description Fetch user data from the API
+ * 
+ * @async
+ * @function fetchUser
+ * @returns {Promise<void>} A promise that resolves to the user data.
+ */
+
+/**
+ * @description Stat counters to display user key data
+ * @type {StatCounter[]}
+ */
+/**
+ * @typedef {Object} StatCounter
+ * @property {string} className - The class name for the counter
+ * @property {number} value - The value to display
+ * @property {string} label - The label for the counter
+ */
+
 const UserProfile = () => {
     const { id } = useParams();
-    const [user, setUser] = React.useState(null);
-    const [loading, setLoading] = React.useState(true);
-    const [error, setError] = React.useState(false);
-    const [achieveYesterdayGoal, setAchieveYesterdayGoal] = React.useState(true);
-
-    /**
-     * @description Fetch user data from the API
-     * 
-     * @async
-     * @function fetchUser
-     * @returns {Promise<void>} A promise that resolves to the user data.
-     */
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [achieveYesterdayGoal, setAchieveYesterdayGoal] = useState(true);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -44,7 +55,7 @@ const UserProfile = () => {
                 });
         };
         fetchUser();
-    }, [id]);
+    }, [id]);    
 
     const statCounters = [
         { className: "calories", value: user?.data.keyData.calorieCount + "KCal", label: "Calories" },

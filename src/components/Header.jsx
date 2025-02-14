@@ -1,5 +1,10 @@
-import React from 'react';
 import Logo from '../assets/images/logo.svg';
+
+/**
+ * @description Header component
+ * 
+ * @returns {JSX.Element}
+ */
 
 const Header = () => {
     return (

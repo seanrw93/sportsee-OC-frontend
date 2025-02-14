@@ -1,9 +1,12 @@
-import React from "react"
 import { Outlet } from "react-router-dom"
 import Header from "./Header"
-import Sidebar from "./sidebar"
+import Sidebar from "./Sidebar"
 
-
+/**
+ * @description Layout component
+ * 
+ * @returns {JSX.Element}
+ */
 
 const Layout = () => {
     return (

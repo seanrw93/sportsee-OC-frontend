@@ -1,6 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
+
+/**
+ * @typedef {Object} TodayScoreRingChartProps
+ * @property {number} score - The score to display
+ */
+
+/**
+ * @description A ring chart that displays the user's score for the day
+ * @param {TodayScoreRingChartProps} props
+ * @returns {JSX.Element} The ring chart component
+ */
 
 const TodayScoreRingChart = ({ score }) => {
     const svgRef = useRef(null);

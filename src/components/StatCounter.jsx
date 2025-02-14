@@ -1,5 +1,17 @@
-import React from 'react';
 import propTypes from 'prop-types';
+
+/**
+ * @typedef {Object} StatCounterProps
+ * @property {string} className - The class name for the counter.
+ * @property {number} value - The value to display.
+ * @property {string} label - The label for the counter.
+ */
+
+/** 
+ * @description A stat counter component
+ * @param {StatCounterProps} props
+ * @returns {JSX.Element} The stat counter component
+ */
 
 const StatCounter = ({ className, value, label }) => {
     return (

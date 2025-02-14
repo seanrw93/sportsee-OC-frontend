@@ -9,7 +9,7 @@
     margin-top: 3em;
     width: 100%;
     max-width: 1000px;
-
+    margin-bottom: 2em;
     & > * {
         border-radius: 5px;
     }
@@ -81,7 +81,7 @@
                 grid-area: calories-count;
 
                 .stat-card__icon {
-                    background-image: url('../../../public/assets/images/icons/calories-icon.svg');
+                    background-image: url('/assets/images/icons/calories-icon.svg');
                 }
             }
     
@@ -89,7 +89,7 @@
                 grid-area: proteins-count;
 
                 .stat-card__icon {
-                    background-image: url('../../../public/assets/images/icons/protein-icon.svg');
+                    background-image: url('/assets/images/icons/protein-icon.svg');
                 }
             }
     
@@ -97,7 +97,7 @@
                 grid-area: carbs-count;
 
                 .stat-card__icon {
-                    background-image: url('../../../public/assets/images/icons/carbs-icon.svg');
+                    background-image: url('/assets/images/icons/carbs-icon.svg');
                 }
             }
     
@@ -105,7 +105,7 @@
                 grid-area: lipids-count;
 
                 .stat-card__icon {
-                    background-image: url('../../../public/assets/images/icons/fat-icon.svg');
+                    background-image: url('/assets/images/icons/fat-icon.svg');
                 }
             }
         }

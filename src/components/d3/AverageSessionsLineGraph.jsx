@@ -1,12 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { getAverageSessions } from '../../api/averageSessions';
 import * as d3 from 'd3';
 
 /**
- * @description A line graph that displays the average session length over time
- * @param {Object} props - The props object
- * @param {number} props.userId - The user ID
+ * @typedef {Object} AverageSessionsLineGraphProps
+ * @property {number} userId
+ */
+
+/**
+ * @description A line graph that displays the user's average session length
+ * @param {AverageSessionsLineGraphProps} props
  * @returns {JSX.Element} The line graph component
  */
 

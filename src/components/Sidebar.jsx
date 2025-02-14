@@ -1,4 +1,10 @@
-import React from 'react';
+import { useRef, useEffect } from 'react';
+
+/**
+ *@description: Sidebar component
+ *
+ *@return {JSX.Element}
+ */
 
 const Sidebar = () => {
     return (
@@ -18,6 +24,9 @@ const Sidebar = () => {
                         <a className="sidebar__icon sidebar__icon--dumbbell" href="#"></a>
                     </li>
                 </ul>
+                <p className="sidebar__footer">
+                    Copyright, SportSee 2020
+                </p>
             </nav>
         </aside>
     );

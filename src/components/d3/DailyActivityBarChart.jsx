@@ -1,15 +1,18 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getActivities } from '../../api/activity';
 import * as d3 from 'd3';
 
 /**
- * @description A bar chart that displays daily activity data
- * 
- * @param {Object} props - The props object
- * @param {number} props.userId - The user ID
+ * @typedef {Object} DailyActivityBarChartProps
+ * @property {number} userId
+ */
+
+/**
+ * @description A radar chart that displays the user's performance data
+ * @param {DailyActivityBarChartProps} props
  * @returns {JSX.Element} The bar chart component
-*/
+ */
 
 const DailyActivityBarChart = ({ userId }) => {
     const svgRef = useRef(null);
