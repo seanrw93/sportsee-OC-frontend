@@ -13,11 +13,11 @@ import * as d3 from 'd3';
  * @param {AverageSessionsLineGraphProps} props
  * @returns {JSX.Element} The line graph component
  */
-
 const AverageSessionsLineGraph = ({ userId }) => {
     const svgRef = useRef(null);
     const [data, setData] = useState([]);
 
+    // Fetch average sessions data when the component mounts or userId changes
     useEffect(() => {
         const fetchAverageSessions = async () => {
             try {
@@ -34,8 +34,13 @@ const AverageSessionsLineGraph = ({ userId }) => {
         fetchAverageSessions();
     }, [userId]);
 
+    // Render the D3 chart when data changes
     useEffect(() => {
-        if (data.length === 0) return;
+        console.log("Rendering chart with data:", data); 
+        if (!Array.isArray(data) || !data.length) {
+            console.warn("Data is not an array or is empty:", data);
+            return; 
+        }
 
         // Create a tooltip div that is hidden by default
         const tooltip = d3.select("body").append("div")
@@ -49,11 +54,13 @@ const AverageSessionsLineGraph = ({ userId }) => {
             .style("border-radius", "4px")
             .style("box-shadow", "0 0 8px rgba(0, 0, 0, 0.1)");
 
+        // Get the dimensions of the container
         const container = svgRef.current.parentElement;
         const width = container.clientWidth;
         const height = container.clientHeight;
         const margin = { top: 40, right: 5, bottom: 40, left: 5 };
 
+        // Create scales for x and y axes
         const x = d3.scaleLinear()
             .domain(d3.extent(data, d => d.day))
             .range([margin.left, width - margin.right]);
@@ -63,11 +70,13 @@ const AverageSessionsLineGraph = ({ userId }) => {
             .nice()
             .range([height - margin.bottom, margin.top]);
 
+        // Create a line generator
         const line = d3.line()
             .x(d => x(d.day))
             .y(d => y(d.sessionLength))
             .curve(d3.curveBasis);
 
+        // Append SVG element
         const svg = d3.select(svgRef.current)
             .attr("width", width)
             .attr("height", height)
@@ -75,10 +84,13 @@ const AverageSessionsLineGraph = ({ userId }) => {
             .attr("preserveAspectRatio", "xMidYMid meet")
             .attr("style", "max-width: 100%; height: auto;");
 
+        // Clear previous SVG content
         svg.selectAll("*").remove();
 
+        // Append defs element for gradient
         const defs = svg.append("defs");
 
+        // Create a gradient for the line
         const gradient = defs.append("linearGradient")
             .attr("id", "gradient")
             .attr("x1", "0%")
@@ -86,8 +98,7 @@ const AverageSessionsLineGraph = ({ userId }) => {
             .attr("x2", "100%")
             .attr("y2", "0%");
 
-
-        // Create a gradient that fades from 40% opacity to full opacity
+        // Define gradient stops
         gradient.append("stop")
             .attr("offset", "0%")
             .attr("stop-color", "#fbfbfb")
@@ -96,7 +107,7 @@ const AverageSessionsLineGraph = ({ userId }) => {
         gradient.append("stop")
             .attr("offset", "100%")
             .attr("stop-color", "#fbfbfb")
-            .attr("stop-opacity", 1); 
+            .attr("stop-opacity", 1);
 
         // Create a path for the line
         const path = svg.append("path")
@@ -114,28 +125,29 @@ const AverageSessionsLineGraph = ({ userId }) => {
             .append("text")
             .attr("class", "x-axis-text")
             .attr("x", d => x(d.day))
-            .attr("y", height - margin.bottom + 20) // Position below the graph
+            .attr("y", height - margin.bottom + 20)
             .attr("text-anchor", "middle")
             .style("font-size", "12px")
             .style("fill", "#fbfbfb")
             .text(d => d.day);
 
+        // Append title text
         svg.append("text")
-            .attr("x", (width - 195))             
+            .attr("x", (width - 195))
             .attr("y", margin.top / 1.5)
-            .attr("text-anchor", "middle")  
-            .style("font-size", "12px") 
-            .style("font-weight", "bold") 
-            .style("fill", "#fbfbfb") 
+            .attr("text-anchor", "middle")
+            .style("font-size", "12px")
+            .style("font-weight", "bold")
+            .style("fill", "#fbfbfb")
             .text("Average speed");
 
         svg.append("text")
-            .attr("x", (width - 190))             
+            .attr("x", (width - 190))
             .attr("y", margin.top / 0.9)
-            .attr("text-anchor", "middle")  
-            .style("font-size", "12px") 
+            .attr("text-anchor", "middle")
+            .style("font-size", "12px")
             .style("font-weight", "bold")
-            .style("fill", "#fbfbfb") 
+            .style("fill", "#fbfbfb")
             .text("of your sessions");
 
         // Add a circle that will follow the mouse along the line
@@ -172,6 +184,7 @@ const AverageSessionsLineGraph = ({ userId }) => {
                     mouseCircle.attr("cx", x(interpolatedX))
                         .attr("cy", y(interpolatedY));
 
+                    // Update tooltip position and text
                     tooltip.style("top", `${event.pageY - 10}px`)
                         .style("left", `${event.pageX + 10}px`)
                         .text(`${Math.round(interpolatedY)} mins`);
@@ -190,7 +203,7 @@ const AverageSessionsLineGraph = ({ userId }) => {
 };
 
 AverageSessionsLineGraph.propTypes = {
-    userId: PropTypes.number.isRequired,
+    userId: PropTypes.string.isRequired,
 };
 
 export default AverageSessionsLineGraph;

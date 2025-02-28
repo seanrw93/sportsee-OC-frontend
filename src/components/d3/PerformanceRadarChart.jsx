@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import { getPerformanceData } from '../../api/performance';
-import PropTypes from 'prop-types';
-import * as d3 from 'd3';
+import { useState, useEffect, useRef } from "react";
+import { getPerformanceData } from "../../api/performance";
+import PropTypes from "prop-types";
+import * as d3 from "d3";
 
 /**
  * @typedef {Object} PerformanceRadarChartProps
@@ -13,7 +13,6 @@ import * as d3 from 'd3';
  * @param {PerformanceRadarChartProps} props
  * @returns {JSX.Element} The radar chart component
  */
-
 const PerformanceRadarChart = ({ userId }) => {
   const svgRef = useRef(null);
   const [data, setData] = useState([]);
@@ -36,29 +35,36 @@ const PerformanceRadarChart = ({ userId }) => {
     fetchPerformanceData();
   }, [userId]);
 
+  // Render the D3 chart when data changes
   useEffect(() => {
-    if (!data || data.length === 0) return;
+    console.log("Rendering chart with data:", data); 
+    if (!Array.isArray(data) || !data.length) {
+        console.warn("Data is not an array or is empty:", data); 
+        return; 
+    }
 
     const levels = data.length - 1;
 
+    // Get the dimensions of the container
     const container = svgRef.current.parentElement;
     const width = container.clientWidth;
     const height = container.clientHeight;
     const margin = { top: 25, right: 25, bottom: 25, left: 25 };
     const radius = Math.min(width, height) / 2 - Math.max(margin.top, margin.right, margin.bottom, margin.left);
 
+    // Append SVG element
     const svg = d3.select(svgRef.current)
-      .attr('width', width)
-      .attr('height', height)
-      .style('border-radius', '5px')
-      .style('background-color', '#282D30')
-      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr("width", width)
+      .attr("height", height)
+      .style("border-radius", "5px")
+      .style("background-color", "#282D30")
+      .attr("viewBox", `0 0 ${width} ${height}`)
       .attr("preserveAspectRatio", "xMidYMid meet");
 
     svg.selectAll("*").remove(); // Clear previous content
     
-    const g = svg.append('g')
-      .attr('transform', `translate(${width / 2},${height / 2})`);
+    const g = svg.append("g")
+      .attr("transform", `translate(${width / 2},${height / 2})`);
 
     const angleSlice = (Math.PI * 2) / data.length;
 
@@ -84,36 +90,36 @@ const PerformanceRadarChart = ({ userId }) => {
         return points;
     };
   
-      // Add hexagonal grid
+    // Add hexagonal grid
     for (let level = 0; level < levels; level++) {
-        g.append('polygon')
-            .attr('points', hexagon(level + 1).map(d => d.join(',')).join(' '))
-            .style('fill', 'none')
-            .style('stroke', '#fff')
-            .style('stroke-width', '0.5px')
-            .style('transform', `rotate(30deg)`);
+        g.append("polygon")
+            .attr("points", hexagon(level + 1).map(d => d.join(",")).join(" "))
+            .style("fill", "none")
+            .style("stroke", "#fff")
+            .style("stroke-width", "0.5px")
+            .style("transform", `rotate(30deg)`);
     };
 
-    const axes = g.selectAll('.axis')
+    const axes = g.selectAll(".axis")
       .data(data)
-      .enter().append('g')
-      .attr('class', 'axis');
+      .enter().append("g")
+      .attr("class", "axis");
 
-    axes.append('text')
-      .attr('x', (_, i) => (rScale(maxValue * 1.1)) * Math.cos(angleSlice * i - Math.PI / 2))
-      .attr('y', (_, i) => (rScale(maxValue * 1.1)) * Math.sin(angleSlice * i - Math.PI / 2))
-      .attr('dy', '0.35em')
-      .style('font-size', '12px')
-      .style('fill', '#fff')
-      .attr('text-anchor', 'middle')
+    axes.append("text")
+      .attr("x", (_, i) => (rScale(maxValue * 1.1)) * Math.cos(angleSlice * i - Math.PI / 2))
+      .attr("y", (_, i) => (rScale(maxValue * 1.1)) * Math.sin(angleSlice * i - Math.PI / 2))
+      .attr("dy", "0.35em")
+      .style("font-size", "12px")
+      .style("fill", "#fff")
+      .attr("text-anchor", "middle")
       .text(d => kinds[d.kind].charAt(0).toUpperCase() + kinds[d.kind].slice(1)); 
 
     // Add radar line
-    g.append('path')
+    g.append("path")
       .datum(data)
-      .attr('d', radarLine)
-      .style('fill', '#FF0101')
-      .style('fill-opacity', 0.7);
+      .attr("d", radarLine)
+      .style("fill", "#FF0101")
+      .style("fill-opacity", 0.7);
 
   }, [data, kinds]);
 
@@ -121,7 +127,7 @@ const PerformanceRadarChart = ({ userId }) => {
 };
 
 PerformanceRadarChart.propTypes = {
-  userId: PropTypes.number.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 export default PerformanceRadarChart;

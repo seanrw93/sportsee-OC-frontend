@@ -7,6 +7,7 @@ import AverageSessionsLineGraph from '../components/d3/AverageSessionsLineGraph'
 import PerformanceRadarChart from '../components/d3/PerformanceRadarChart';
 import TodayScoreRingChart from '../components/d3/TodayScoreRingChart';
 import StatCounter from '../components/StatCounter';
+import UserNotFound from '../components/UserNotFound';
 
 /**
  * @description UserProfile component to display user profile information and charts.
@@ -66,9 +67,9 @@ const UserProfile = () => {
 
     return (
         <>
-            {loading && <div>Loading...</div>}
-            {error && <div>Failed to fetch user data</div>}
-            {user && (
+            {loading && <h1>Loading...</h1>}
+            {error && <UserNotFound />}
+            {user ? (
                 <>
                     <div className='greeting'>
                         <h1 className='greeting__message'>Hello&nbsp;
@@ -76,9 +77,13 @@ const UserProfile = () => {
                                 {user.data.userInfos.firstName}
                             </span>
                         </h1>
-                        {achieveYesterdayGoal && (
+                        {achieveYesterdayGoal ? (
                             <p className='greeting__achieve-goal'>
                                 Congratulations! You achieved yesterday's goal!👏
+                            </p>
+                        ) : (
+                            <p className='greeting__achieve-goal'>
+                                You didn't achieve yesterday's goal. Try again today!💪
                             </p>
                         )}
                     </div>
@@ -105,7 +110,7 @@ const UserProfile = () => {
                         )) }
                     </div>
                 </>
-            )}
+            ) : <UserNotFound />}
         </>
     );
 };

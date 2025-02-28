@@ -35,10 +35,10 @@ const DailyActivityBarChart = ({ userId }) => {
     }, [userId]);
 
     useEffect(() => {
-        console.log('Rendering chart with data:', data); // Log data for visualization
+        console.log("Rendering chart with data:", data); 
         if (!Array.isArray(data) || !data.length) {
-            console.warn('Data is not an array or is empty:', data); // Log a warning for empty or invalid data
-            return; // Check if data is an array and not empty
+            console.warn("Data is not an array or is empty:", data); 
+            return; 
         }
 
         // Create a tooltip div that is hidden by default
@@ -174,7 +174,7 @@ const DailyActivityBarChart = ({ userId }) => {
 };
 
 DailyActivityBarChart.propTypes = {
-    userId: PropTypes.number.isRequired,
+    userId: PropTypes.string.isRequired,
 };
 
 export default DailyActivityBarChart;

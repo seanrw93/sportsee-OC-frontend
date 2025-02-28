@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      outDir: 'dist',
+      outDir: 'dist/',
       rollupOptions: {
         output: {
           assetFileNames: 'assets/[name].[hash].[ext]',
