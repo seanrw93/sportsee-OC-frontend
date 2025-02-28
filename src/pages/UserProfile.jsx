@@ -29,7 +29,7 @@ import UserNotFound from '../components/UserNotFound';
 /**
  * @typedef {Object} StatCounter
  * @property {string} className - The class name for the counter
- * @property {number} value - The value to display
+ * @property {string} value - The value to display
  * @property {string} label - The label for the counter
  */
 
@@ -59,10 +59,10 @@ const UserProfile = () => {
     }, [id]);    
 
     const statCounters = [
-        { className: "calories", value: user?.data.keyData.calorieCount + "KCal", label: "Calories" },
-        { className: "proteins", value: user?.data.keyData.proteinCount + "g", label: "Proteins" },
-        { className: "carbs", value: user?.data.keyData.carbohydrateCount + "g", label: "Carbos" },
-        { className: "lipids", value: user?.data.keyData.lipidCount + "g", label: "Lipids" }
+        { className: "calories", value: Number(user?.data.keyData.calorieCount) + "KCal", label: "Calories" },
+        { className: "proteins", value: Number(user?.data.keyData.proteinCount) + "g", label: "Proteins" },
+        { className: "carbs", value: Number(user?.data.keyData.carbohydrateCount) + "g", label: "Carbos" },
+        { className: "lipids", value: Number(user?.data.keyData.lipidCount) + "g", label: "Lipids" }
     ];
 
     return (

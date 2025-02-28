@@ -36,8 +36,7 @@ const AverageSessionsLineGraph = ({ userId }) => {
 
     // Render the D3 chart when data changes
     useEffect(() => {
-        console.log("Rendering chart with data:", data); 
-        if (!Array.isArray(data) || !data.length) {
+        if (!Array.isArray(data) || !data) {
             console.warn("Data is not an array or is empty:", data);
             return; 
         }

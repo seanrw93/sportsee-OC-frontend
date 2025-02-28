@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 /**
  * @typedef {Object} StatCounterProps
  * @property {string} className - The class name for the counter.
- * @property {number} value - The value to display.
+ * @property {string} value - The value to display.
  * @property {string} label - The label for the counter.
  */
 

@@ -34,9 +34,8 @@ const DailyActivityBarChart = ({ userId }) => {
         fetchActivities();
     }, [userId]);
 
-    useEffect(() => {
-        console.log("Rendering chart with data:", data); 
-        if (!Array.isArray(data) || !data.length) {
+    useEffect(() => { 
+        if (!Array.isArray(data) || !data) {
             console.warn("Data is not an array or is empty:", data); 
             return; 
         }
