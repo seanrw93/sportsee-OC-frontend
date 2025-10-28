@@ -33,7 +33,7 @@
 
 export const getUserById = async (id) => {
     try {
-        const response = await fetch(`http://localhost:3000/user/${id}`);
+        const response = await fetch(`https://sportsee-backend-j2dr.onrender.com/user/${id}`);
         if (!response.ok) {
             throw new Error(`Error fetching requests: ${response.statusText}`);
         }

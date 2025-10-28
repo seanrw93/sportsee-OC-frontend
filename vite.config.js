@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
       port: 5173,
       strictPort: true,
       proxy: {
-        '/api': 'http://localhost:3000',
+        '/api': 'https://sportsee-backend-j2dr.onrender.com/',
       },
     },
     build: {
