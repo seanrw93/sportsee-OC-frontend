@@ -16,7 +16,11 @@ export default defineConfig(({ mode }) => {
       port: 5173,
       strictPort: true,
       proxy: {
+<<<<<<< Updated upstream
         '/api': 'https://sportsee-backend-j2dr.onrender.com/',
+=======
+        '/api': '${import.meta.env.VITE_API_URL || 'http://localhost:3000'}',
+>>>>>>> Stashed changes
       },
     },
     build: {

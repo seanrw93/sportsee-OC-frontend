@@ -26,7 +26,7 @@
 
 export const getActivities = async (id) => {
     try {
-        const response = await fetch(`https://sportsee-backend-j2dr.onrender.com/user/${id}/activity`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/user/${id}/activity`);
         if (!response.ok) {
             throw new Error(`Error fetching requests: ${response.statusText}`);
         }
